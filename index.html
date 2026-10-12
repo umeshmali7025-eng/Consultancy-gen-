@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Umesh Online Services & Consultancy</title>
+  <style>
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f4f8; margin: 0; padding: 0; color: #333; }
+    
+    .header { background: linear-gradient(135deg, #1e3a8a, #2563eb); color: white; padding: 20px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+    .header h1 { margin: 0; font-size: 28px; }
+    .header p { margin: 5px 0 0; font-size: 14px; opacity: 0.9; }
+
+    .container { max-width: 800px; margin: 30px auto; padding: 0 15px; }
+
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 30px; }
+    .service-card { background: white; padding: 15px; border-radius: 8px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05); border: 1px solid #e5e7eb; }
+    .service-card h3 { margin: 0 0 10px; color: #1e40af; font-size: 18px; }
+    .service-card p { font-size: 13px; color: #6b7280; margin: 0; }
+
+    .form-container { background: white; padding: 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+    .form-container h2 { margin-top: 0; color: #1f2937; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; }
+    
+    .form-group { margin-bottom: 15px; }
+    .form-group label { display: block; margin-bottom: 5px; font-weight: bold; color: #4b5563; font-size: 14px; }
+    .form-group input, .form-group select { width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 6px; box-sizing: border-box; font-size: 14px; }
+    
+    #doc-requirements { display: none; background: #eff6ff; border-left: 4px solid #3b82f6; padding: 12px; margin: 15px 0; border-radius: 4px; font-size: 13px; color: #1e3a8a; }
+    
+    .payment-box { background: #fdfbf7; border: 1px dashed #fbbf24; padding: 15px; text-align: center; border-radius: 6px; margin: 20px 0; }
+    .payment-box img { width: 150px; height: 150px; border: 2px solid #ddd; border-radius: 8px; margin-bottom: 10px; }
+    .payment-box p { margin: 5px 0; font-size: 14px; color: #b45309; font-weight: bold; }
+
+    .submit-btn { background: #16a34a; color: white; border: none; padding: 12px 20px; width: 100%; border-radius: 6px; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>🏛️ Umesh Online Services</h1>
+    <p>Ghar Baithe Apne Sabhi Sarkari Documents Banwayein</p>
+  </div>
+
+  <div class="container">
+    
+    <div class="services-grid">
+      <div class="service-card">
+        <h3>📄 Domicile Certificate</h3>
+        <p>Maharashtra Rahiwasi Praman Patra</p>
+      </div>
+      <div class="service-card">
+        <h3>📜 Caste Certificate</h3>
+        <p>Jati Praman Patra (All Categories)</p>
+      </div>
+      <div class="service-card">
+        <h3>💰 Income Certificate</h3>
+        <p>Aay Praman Patra (Scholarship ke liye)</p>
+      </div>
+    </div>
+
+    <div class="form-container">
+      <h2>Apply Now (Application Form)</h2>
+      
+      <!-- FORM SPREE LINK YAHAN LAGAEN -->
+      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" enctype="multipart/form-data">
+        
+        <div class="form-group">
+          <label>Aapka Pura Naam (As per Aadhar):</label>
+          <input type="text" name="FullName" required placeholder="Ex: Umesh Mali">
+        </div>
+
+        <div class="form-group">
+          <label>WhatsApp Mobile Number:</label>
+          <input type="tel" name="MobileNumber" required placeholder="10 digit number">
+        </div>
+
+        <div class="form-group">
+          <label>Kaunsa Document Banwana Hai?</label>
+          <select name="ServiceType" id="service-type" onchange="showRequirements()" required>
+            <option value="">-- Select Service --</option>
+            <option value="Domicile">Domicile Certificate (₹150)</option>
+            <option value="Caste">Caste Certificate (₹300)</option>
+            <option value="Income">Income Certificate (₹100)</option>
+          </select>
+        </div>
+
+        <div id="doc-requirements"></div>
+
+        <div class="form-group">
+          <label>Required Documents Upload Karein (PDF/JPG/PNG):</label>
+          <input type="file" name="Documents" multiple required>
+        </div>
+
+        <div class="payment-box">
+          <p>Scan & Pay the Processing Fee</p>
+          <!-- QR CODE KI PHOTO YAHAN LAGAEN -->
+          <img src="https://via.placeholder.com/150?text=Aapka+UPI+QR" alt="UPI QR Code">
+          <p>UPI ID: 9876543210@ybl</p>
+          <label style="display:block; text-align:left; margin-top:10px; color:#333;">Payment Screenshot Upload Karein:</label>
+          <input type="file" name="PaymentScreenshot" required style="margin-top:5px;">
+        </div>
+
+        <button type="submit" class="submit-btn">✅ Submit Request & Documents</button>
+      
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function showRequirements() {
+      const type = document.getElementById('service-type').value;
+      const reqBox = document.getElementById('doc-requirements');
+      let text = "";
+      if(type === "Domicile") {
+        text = "<strong>Required for Domicile:</strong><br>1. Aadhar Card<br>2. Ration Card / Light Bill<br>3. Passport Size Photo<br>4. School LC (Leaving Certificate)";
+      } else if (type === "Caste") {
+        text = "<strong>Required for Caste Certificate:</strong><br>1. Aadhar Card<br>2. Father/Grandfather ka Caste Proof<br>3. Ration Card<br>4. Passport Size Photo";
+      } else if (type === "Income") {
+        text = "<strong>Required for Income Certificate:</strong><br>1. Aadhar Card<br>2. Ration Card<br>3. Talathi ka Dakhla / Salary Slip";
+      }
+      if(text !== "") { reqBox.innerHTML = text; reqBox.style.display = "block"; } else { reqBox.style.display = "none"; }
+    }
+  </script>
+
+</body>
+</html>
